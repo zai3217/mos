@@ -1,0 +1,26 @@
+ASPARMAS= -f bin
+OBJECTS= boot.bin master.img
+
+all: $(OBJECTS)
+
+.PHONY: clean
+clean:
+	rm -f $(OBJECTS)
+
+%.bin: %.asm
+	nasm $(ASPARMAS) $< -o $@
+
+.PHONY: run
+run: boot.bin 
+	yes | bximage -q -hd=16 -func=create -sectsize=512 -imgmode=flat master.img
+	dd if=boot.bin of=master.img bs=512 count=1 conv=notrunc
+	bochs -q
+
+.PHONY: usb
+usb: all /dev/sda
+	sudo dd if=/dev/sda of=tmp.bin bs=512 count=1 conv=notrunc
+	cp tmp.bin usb.bin
+	sudo rm tmp.bin
+	dd if=boot.bin of=usb.bin bs=446 count=1 conv=notrunc
+	sudo dd if=usb.bin of=/dev/sda bs=512 count=1 conv=notrunc
+	rm usb.bin
