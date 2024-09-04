@@ -1,7 +1,7 @@
 ASPARMAS= -f bin
-OBJECTS= boot.bin master.img
+OBJECTS= boot.bin loader.bin
 
-all: $(OBJECTS)
+all: $(OBJECTS) master.img
 
 .PHONY: clean
 clean:
@@ -10,10 +10,13 @@ clean:
 %.bin: %.asm
 	nasm $(ASPARMAS) $< -o $@
 
-.PHONY: run
-run: boot.bin 
+master.img: $(OBJECTS)
 	yes | bximage -q -hd=16 -func=create -sectsize=512 -imgmode=flat master.img
 	dd if=boot.bin of=master.img bs=512 count=1 conv=notrunc
+	dd if=loader.bin of=master.img bs=512 count=4 seek=2 conv=notrunc
+
+.PHONY: run
+run: all
 	bochs -q
 
 .PHONY: usb
