@@ -1,6 +1,9 @@
 PWD=$$(pwd)
-OBJECTS= build/boot/boot.bin build/boot/loader.bin build/kernel/start.o build/kernel/kernel.bin \
+OBJECTS= build/boot/boot.bin build/boot/loader.bin build/kernel/kernel.bin \
 build/system.bin build/system.map
+CFLAGS=-m32
+IFDEBUG=-g
+INCLUDE=-Isrc/include
 
 $(shell mkdir -p build/boot)
 $(shell mkdir -p build/kernel)
@@ -18,10 +21,13 @@ clean:
 build/%.bin: src/%.asm
 	nasm -f bin $< -o $@
 
-build/%.o: src/%.asm
-	nasm -f elf32 $< -o $@
+build/kernel/%.o: src/kernel/%.asm
+	nasm -f elf32 $(IFDEBUG) $< -o $@
 
-build/kernel/kernel.bin: build/kernel/start.o
+build/kernel/%.o: src/kernel/%.c
+	gcc $(CFLAGS) $(IFDEBUG) $(INCLUDE) -c $< -o $@
+
+build/kernel/kernel.bin: build/kernel/start.o build/kernel/main.o
 	ld -m elf_i386 -static $^ -o $@ -Ttext 0x10000
 
 build/system.bin: build/kernel/kernel.bin
