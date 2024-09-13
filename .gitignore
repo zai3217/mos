@@ -1,4 +1,6 @@
+.*
 tmp.*
 *.tmp
 *~
-bd/
+build
+bd
