@@ -11,6 +11,7 @@ typedef int i32;
 typedef long long i64;
 typedef float f32;
 typedef double f64;
+typedef unsigned long usize;
 
 #define EOF -1 // end of file
 #define NULL 0 // null pointer

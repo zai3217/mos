@@ -1,0 +1,98 @@
+qemu-system-i386 \
+	-s -S\
+	-m 32M\
+	-boot c\
+	-hda build/master.img\
+
+WARNING: Image format was not specified for 'build/master.img' and probing guessed raw.
+         Automatically detecting the format is dangerous for raw images, write operations on block 0 will be restricted.
+         Specify the 'raw' format explicitly to remove the restrictions.
+qemu-system-i386 \
+	-s -S\
+	-m 32M\
+	-boot c\
+	-hda build/master.img\
+
+WARNING: Image format was not specified for 'build/master.img' and probing guessed raw.
+         Automatically detecting the format is dangerous for raw images, write operations on block 0 will be restricted.
+         Specify the 'raw' format explicitly to remove the restrictions.
+qemu: QEMU: Terminated via GDBstub
+qemu-system-i386 \
+	-s -S\
+	-m 32M\
+	-boot c\
+	-hda build/master.img\
+
+WARNING: Image format was not specified for 'build/master.img' and probing guessed raw.
+         Automatically detecting the format is dangerous for raw images, write operations on block 0 will be restricted.
+         Specify the 'raw' format explicitly to remove the restrictions.
+qemu: QEMU: Terminated via GDBstub
+qemu-system-i386 \
+	-s -S\
+	-m 32M\
+	-boot c\
+	-hda build/master.img\
+
+WARNING: Image format was not specified for 'build/master.img' and probing guessed raw.
+         Automatically detecting the format is dangerous for raw images, write operations on block 0 will be restricted.
+         Specify the 'raw' format explicitly to remove the restrictions.
+qemu-system-i386 \
+	-s -S\
+	-m 32M\
+	-boot c\
+	-hda build/master.img\
+
+WARNING: Image format was not specified for 'build/master.img' and probing guessed raw.
+         Automatically detecting the format is dangerous for raw images, write operations on block 0 will be restricted.
+         Specify the 'raw' format explicitly to remove the restrictions.
+qemu-system-i386 \
+	-s -S\
+	-m 32M\
+	-boot c\
+	-hda build/master.img\
+
+WARNING: Image format was not specified for 'build/master.img' and probing guessed raw.
+         Automatically detecting the format is dangerous for raw images, write operations on block 0 will be restricted.
+         Specify the 'raw' format explicitly to remove the restrictions.
+qemu-system-i386 \
+	-s -S\
+	-m 32M\
+	-boot c\
+	-hda build/master.img\
+
+WARNING: Image format was not specified for 'build/master.img' and probing guessed raw.
+         Automatically detecting the format is dangerous for raw images, write operations on block 0 will be restricted.
+         Specify the 'raw' format explicitly to remove the restrictions.
+qemu: terminating on signal 1
+qemu-system-i386 \
+	-s -S\
+	-m 32M\
+	-boot c\
+	-hda build/master.img\
+
+WARNING: Image format was not specified for 'build/master.img' and probing guessed raw.
+         Automatically detecting the format is dangerous for raw images, write operations on block 0 will be restricted.
+         Specify the 'raw' format explicitly to remove the restrictions.
+qemu: terminating on signal 1
+qemu-system-i386 \
+	-s -S\
+	-m 32M\
+	-boot c\
+	-hda build/master.img\
+
+WARNING: Image format was not specified for 'build/master.img' and probing guessed raw.
+         Automatically detecting the format is dangerous for raw images, write operations on block 0 will be restricted.
+         Specify the 'raw' format explicitly to remove the restrictions.
+qemu: terminating on signal 1
+WARNING: Image format was not specified for 'build/master.img' and probing guessed raw.
+         Automatically detecting the format is dangerous for raw images, write operations on block 0 will be restricted.
+         Specify the 'raw' format explicitly to remove the restrictions.
+qemu-system-i386 \
+	-s -S\
+	-m 32M\
+	-boot c\
+	-hda build/master.img\
+
+WARNING: Image format was not specified for 'build/master.img' and probing guessed raw.
+         Automatically detecting the format is dangerous for raw images, write operations on block 0 will be restricted.
+         Specify the 'raw' format explicitly to remove the restrictions.

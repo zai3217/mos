@@ -1,7 +1,7 @@
 
-OBJECTS= build/boot/boot.bin build/boot/loader.bin build/kernel/kernel.bin \
+OBJECTS= build/boot/boot.bin build/boot/loader.bin build/kernel.bin \
 build/system.bin build/system.map
-CFLAGS= -m32 
+CFLAGS= -m32 -Qn
 CFLAGS+= -fno-builtin # disable gcc built-in functions
 CFLAGS+= -nostdlib # disable standard library
 CFLAGS+= -nostdinc # disable standard include files
@@ -15,6 +15,7 @@ INCLUDE=-Isrc/include
 
 $(shell mkdir -p build/boot)
 $(shell mkdir -p build/kernel)
+$(shell mkdir -p build/lib)
 
 .PHONY: all
 all: $(OBJECTS) build/master.img
@@ -29,19 +30,26 @@ clean:
 build/%.bin: src/%.asm
 	nasm -f bin $< -o $@
 
-build/kernel/%.o: src/kernel/%.asm
+build/%.o: src/%.asm
 	nasm -f elf32 $(IFDEBUG) $< -o $@
 
-build/kernel/%.o: src/kernel/%.c
+build/%.o: src/%.c
 	gcc $(CFLAGS) $(IFDEBUG) $(INCLUDE) -c $< -o $@
 
-build/kernel/kernel.bin: build/kernel/start.o build/kernel/main.o
+build/kernel.bin: build/kernel/start.o \
+	build/kernel/main.o \
+	build/kernel/io.o \
+	build/lib/string.o \
+	build/lib/cursor.o \
+	build/lib/stdio.o \
+
+
 	ld -m elf_i386 -static $^ -o $@ -Ttext 0x10000
 
-build/system.bin: build/kernel/kernel.bin
+build/system.bin: build/kernel.bin
 	objcopy -O binary $< $@
 
-build/system.map: build/kernel/kernel.bin
+build/system.map: build/kernel.bin
 	nm $< |	sort > $@
 
 build/master.img: $(OBJECTS)

@@ -1,22 +1,26 @@
 #include <mos/mos.h>
+#include <mos/types.h>
+#include <mos/io.h>
+#include <mos/string.h>
 
-int magic = MOS_MAGIC;
-char message[] = "hello mos!!!"; // .data
 char buf[1024];
-
-void kernel_init(){
-    clear_screen();
-    char* video = (char*)0xb8000; // video memory address
-    for (int i = 0; i < sizeof(message); i++)
-    {
-        video[i * 2] = message[i]; // write message to video memory   
-    }
+char msg[] = "Hello, world!";
+void kernel_init()
+{
+    cursor_mv_to(0);
+    clear_after_cursor();
+    int res;
+    res = strcmp(buf, msg);
+    strcpy(buf, msg);
+    res = strcmp(buf, msg);
+    strcat(buf, msg);
+    res = strcmp(buf, msg);
 }
 
-void clear_screen()
-{
+void clear_after_cursor(){
+    u16 pos = get_cursor_pos();
     char *video = (char *)0xb8000; // video memory address
-    for (int i = 0; i < 80 * 25; i++)
+    for (int i = pos; i < 80 * 25; i++)
     {
         video[i * 2] = 0; // clear screen
     }
