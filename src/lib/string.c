@@ -72,6 +72,16 @@ void* memset(void *dest, int ch, usize n){
     return dest;
 }
 
+void *memsetw(void *dest, int w, usize n)
+{
+    char *p = dest;
+    while (n--){
+        *p = w;
+        p+=2;
+    }
+    return dest;
+}
+
 void* memcpy(void *dest, const void *src, usize n){
     char* p1 = dest;
     while (n--)
@@ -88,4 +98,15 @@ void* memchr(const void *s, int ch, usize n){
     }
 }
 
-
+void *memrchr(const void *s, int ch, usize n)
+{
+    char *p = (char *)s;
+    char *last = (void *)0;
+    while (n--)
+    {
+        if (*p == ch)
+            last = p;
+        p++;
+    }
+    return last;
+}

@@ -10,7 +10,8 @@ char *strchr(const char *s, int ch);
 char *strrchr(const char *s, int ch);
 int memcmp(const void *lhs, const void *rhs, usize n);
 void *memset(void *dest, int ch, usize n);
+void *memsetw(void *dest, int w, usize n);
 void *memcpy(void *dest, const void *src, usize n);
 void *memchr(const void *s, int ch, usize n);
-
+void *memrchr(const void *s, int ch, usize n);
 #endif /* MOS_TYPES_H */

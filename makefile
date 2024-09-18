@@ -13,19 +13,15 @@ CFLAGS:= $(strip $(CFLAGS)) # remove empty spaces
 IFDEBUG=-g
 INCLUDE=-Isrc/include
 
-$(shell mkdir -p build/boot)
-$(shell mkdir -p build/kernel)
-$(shell mkdir -p build/lib)
-
 .PHONY: all
-all: $(OBJECTS) build/master.img
+all: clean $(OBJECTS) build/master.img
 
-.PHONY: build
-build: clean all
-PWD=$$(pwd)
 .PHONY: clean
 clean:
 	rm -rf ./build 
+	mkdir -p build/boot
+	mkdir -p build/kernel
+	mkdir -p build/lib
 
 build/%.bin: src/%.asm
 	nasm -f bin $< -o $@
@@ -40,9 +36,7 @@ build/kernel.bin: build/kernel/start.o \
 	build/kernel/main.o \
 	build/kernel/io.o \
 	build/lib/string.o \
-	build/lib/cursor.o \
-	build/lib/stdio.o \
-
+	build/lib/console.o \
 
 	ld -m elf_i386 -static $^ -o $@ -Ttext 0x10000
 
